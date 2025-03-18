@@ -21,6 +21,10 @@ List<GameDto> games = [
         new DateOnly(2022, 9, 27))
 ];
 
+// Get the games
+app.MapGet("games", () => games);
+
+// Landing page
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
