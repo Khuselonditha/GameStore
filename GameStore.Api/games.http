@@ -1,2 +1,5 @@
 // Request for all the games
 GET http://localhost:5173/games
+
+### Request games/1
+GET http://localhost:5173/games/1
