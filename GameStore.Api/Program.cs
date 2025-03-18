@@ -23,14 +23,14 @@ List<GameDto> games = [
         new DateOnly(2022, 9, 27))
 ];
 
-// GET games
+// GET /games
 app.MapGet("games", () => games);
 
-// GET game/1
+// GET /game/1
 app.MapGet("games/{id}", (int id) => games.Find(game => game.Id == id))
     .WithName(GetGameEndpointName);
 
-// POST games
+// POST /games
 app.MapPost("games", (CreateGameDto newGame) => {
     GameDto game = new(
         games.Count + 1,
@@ -44,7 +44,7 @@ app.MapPost("games", (CreateGameDto newGame) => {
     return Results.CreatedAtRoute(GetGameEndpointName, new{id = game.Id}, game);
 });
 
-// PUT games
+// PUT /games
 app.MapPut("games/{id}", (int id, UpdateDto updatedGame) => {
     var index = games.FindIndex(game => game.Id == id);
 
@@ -58,5 +58,15 @@ app.MapPut("games/{id}", (int id, UpdateDto updatedGame) => {
 
     return Results.NoContent();
 });
+
+// DELETE /games/1
+app.MapDelete("games/{id}", (int id) => {
+    games.RemoveAll(game => game.Id == id);
+    
+    return Results.NoContent();
+});
+
+
+
 
 app.Run();
