@@ -21,7 +21,10 @@ List<GameDto> games = [
         new DateOnly(2022, 9, 27))
 ];
 
-// Get the games
+// GET games
 app.MapGet("games", () => games);
+
+// GET game/1
+app.MapGet("games/{id}", (int id) => games.Find(game => game.Id == id));
 
 app.Run();
