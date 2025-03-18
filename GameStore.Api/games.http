@@ -25,4 +25,7 @@ Content-Type: application/json
     "genre": "Fighting",
     "price": 776.93,
     "releaseDate": "1992-02-01"
-  }
+}
+
+### DELETE game
+DELETE http://localhost:5173/games/2
