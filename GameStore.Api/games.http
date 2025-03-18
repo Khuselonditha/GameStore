@@ -1,5 +1,2 @@
-// Request for landing page
-GET http://localhost:5173
-
 // Request for all the games
 GET http://localhost:5173/games

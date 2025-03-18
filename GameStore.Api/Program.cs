@@ -24,7 +24,4 @@ List<GameDto> games = [
 // Get the games
 app.MapGet("games", () => games);
 
-// Landing page
-app.MapGet("/", () => "Hello World!");
-
 app.Run();
