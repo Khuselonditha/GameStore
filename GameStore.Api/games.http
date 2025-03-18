@@ -14,3 +14,15 @@ Content-Type: application/json
     "price": 543.20,
     "releaseDate": "2011-11-18"
 }
+
+### Put game (update)
+PUT http://localhost:5173/games/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Street Fighter II Turbo",
+    "genre": "Fighting",
+    "price": 776.93,
+    "releaseDate": "1992-02-01"
+  }
