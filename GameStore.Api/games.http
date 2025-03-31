@@ -9,10 +9,10 @@ POST http://localhost:5173/games
 Content-Type: application/json
 
 {
-    "name": "Minecraft",
-    "genreId": 5,
-    "price": 543.20,
-    "releaseDate": "2011-11-18"
+    "name": "Grand Theft Auto V",
+    "genreId": 2,
+    "price": 849,
+    "releaseDate": "2022-03-15"
 }
 
 ### Put game (update)
