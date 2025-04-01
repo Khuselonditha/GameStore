@@ -38,7 +38,8 @@ public static class GamesEndpoints {
         group.MapGet("/{id}", (int id, GameStoreContext dbContext) =>
         {
             Game? game = dbContext.Games.Find(id);
-            return game is null ? Results.NotFound() : Results.Ok(game);            
+
+            return game is null ? Results.NotFound() : Results.Ok(game.ToGameDetailsDto());            
             
         }).WithName(GetGameEndpointName);   
 
@@ -47,14 +48,13 @@ public static class GamesEndpoints {
         {
 
             Game game = newGame.ToEntity();
-            game.Genre = dbContext.Genres.Find(newGame.GenreId);
 
             dbContext.Games.Add(game);
             dbContext.SaveChanges();
 
-            GameSummaryDto gameDto = game.ToSummaryDto();
+            GameDetailsDto gameDetailsDto = game.ToGameDetailsDto();
 
-            return Results.CreatedAtRoute(GetGameEndpointName, new{id = game.Id}, gameDto);
+            return Results.CreatedAtRoute(GetGameEndpointName, new{id = game.Id}, gameDetailsDto);
         });
 
         // PUT /games
