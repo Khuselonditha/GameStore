@@ -1,6 +1,5 @@
 using GameStore.Api.Dtos;
 using GameStore.Api.Entities;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GameStore.Api.Mapping;
 
