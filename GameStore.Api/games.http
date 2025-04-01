@@ -9,10 +9,10 @@ POST http://localhost:5173/games
 Content-Type: application/json
 
 {
-    "name": "Grand Theft Auto V",
-    "genreId": 2,
-    "price": 849,
-    "releaseDate": "2022-03-15"
+    "name": "FIFA 23",
+    "genreId": 3,
+    "price": 1399,
+    "releaseDate": "2022-09-27"
 }
 
 ### Put game (update)
