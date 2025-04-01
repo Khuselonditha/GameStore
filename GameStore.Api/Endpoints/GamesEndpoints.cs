@@ -8,7 +8,7 @@ namespace GameStore.Api.Endpoints;
 public static class GamesEndpoints {
     const string GetGameEndpointName = "GetGame";
 
-    private static readonly List<GameDto> games = [
+    private static readonly List<GameSummaryDto> games = [
         new(1,
             "Street Fighter II",
             "Fighting",
@@ -35,8 +35,12 @@ public static class GamesEndpoints {
         group.MapGet("/", () => games);
 
         // GET /game/1
-        group.MapGet("/{id}", (int id) => games.Find(game => game.Id == id))
-            .WithName(GetGameEndpointName);
+        group.MapGet("/{id}", (int id, GameStoreContext dbContext) =>
+        {
+            Game? game = dbContext.Games.Find(id);
+            return game is null ? Results.NotFound() : Results.Ok(game);            
+            
+        }).WithName(GetGameEndpointName);   
 
         // POST /games
         group.MapPost("/", (CreateGameDto newGame, GameStoreContext dbContext) => 
@@ -48,7 +52,7 @@ public static class GamesEndpoints {
             dbContext.Games.Add(game);
             dbContext.SaveChanges();
 
-            GameDto gameDto = game.ToDto();
+            GameSummaryDto gameDto = game.ToSummaryDto();
 
             return Results.CreatedAtRoute(GetGameEndpointName, new{id = game.Id}, gameDto);
         });
@@ -57,7 +61,7 @@ public static class GamesEndpoints {
         group.MapPut("/{id}", (int id, UpdateDto updatedGame) => {
             var index = games.FindIndex(game => game.Id == id);
 
-            games[index] = new GameDto(
+            games[index] = new GameSummaryDto(
                 id,
                 updatedGame.Name,
                 updatedGame.Genre,
