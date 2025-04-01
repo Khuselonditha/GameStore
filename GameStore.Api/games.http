@@ -16,15 +16,14 @@ Content-Type: application/json
 }
 
 ### Put game (update)
-PUT http://localhost:5173/games/1
+PUT http://localhost:5173/games/2
 Content-Type: application/json
 
 {
-    "id": 1,
-    "name": "Street Fighter II Turbo",
-    "genre": "Fighting",
-    "price": 776.93,
-    "releaseDate": "1992-02-01"
+    "name": "The Smurfs",
+    "genreId": 5,
+    "price": 512.72,
+    "releaseDate": "2024-10-24"
 }
 
 ### DELETE game
